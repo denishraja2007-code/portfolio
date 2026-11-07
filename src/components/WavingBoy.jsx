@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const greetings = ['Hi! 👋', 'hello! 👋 ']
+const greetings = ['Hi! 👋', 'Hello! 🙏']
 
 function WavingBoy() {
   const [index, setIndex] = useState(0)
@@ -39,7 +39,7 @@ function WavingBoy() {
         <img
           src="/avatar.jpg"
           alt="Denishraja avatar"
-          className="w-44 h-44 rounded-full object-cover object-top border-4 border-sky-500 shadow-lg shadow-sky-500/30"
+          className="w-44 h-44 rounded-full object-cover object-[50%_30%] border-4 border-sky-500 shadow-lg shadow-sky-500/30"
         />
         <motion.span
           className="absolute -right-3 bottom-2 text-4xl"
