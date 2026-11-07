@@ -7,10 +7,12 @@ const inputClass =
 function ContactForm() {
   const formRef = useRef(null)
   const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
+    setErrorMsg('')
 
     try {
       await emailjs.sendForm(
@@ -23,6 +25,7 @@ function ContactForm() {
       formRef.current.reset()
     } catch (err) {
       console.error(err)
+      setErrorMsg(err?.text || err?.message || 'Unknown error')
       setStatus('error')
     }
   }
@@ -73,9 +76,12 @@ function ContactForm() {
         </p>
       )}
       {status === 'error' && (
-        <p className="text-center text-red-400">
-          Something went wrong. Please try again or email me directly.
-        </p>
+        <div className="text-center text-red-400">
+          <p>Something went wrong. Please try again or email me directly.</p>
+          {errorMsg && (
+            <p className="text-xs text-red-300 mt-1">Details: {errorMsg}</p>
+          )}
+        </div>
       )}
     </form>
   )
